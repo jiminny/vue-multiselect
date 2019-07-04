@@ -1,7 +1,7 @@
 {
   "name": "vue-multiselect",
   "version": "2.1.6",
-  "private": false,
+  "private": true,
   "types": "index.d.ts",
   "scripts": {
     "test": "vue-cli-service test:unit",
