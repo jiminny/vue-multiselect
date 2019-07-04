@@ -61,6 +61,8 @@ function filterGroups (search, label, values, groupLabel, customLabel) {
 
 const flow = (...fns) => x => fns.reduce((v, f) => f(v), x)
 
+import getAncestorWithNonVisibleOverflow from './getAncestorWithNonVisibleOverflow'
+
 export default {
   data () {
     return {
@@ -698,16 +700,22 @@ export default {
     adjustPosition () {
       if (typeof window === 'undefined') return
 
-      const spaceAbove = this.$el.getBoundingClientRect().top
-      const spaceBelow = window.innerHeight - this.$el.getBoundingClientRect().bottom
-      const hasEnoughSpaceBelow = spaceBelow > this.maxHeight
+      const filteredOptionsHeight = Math.min(this.filteredOptions.length * this.optionHeight, this.maxHeight)
+
+      const overflowContainer = getAncestorWithNonVisibleOverflow(this.$el)
+      const overflowContainerClientRect = overflowContainer.getBoundingClientRect()
+      const multiselectClientRect = this.$el.getBoundingClientRect()
+
+      const spaceAbove = multiselectClientRect.top - overflowContainerClientRect.top
+      const spaceBelow = overflowContainerClientRect.bottom - multiselectClientRect.bottom
+      const hasEnoughSpaceBelow = spaceBelow > filteredOptionsHeight
 
       if (hasEnoughSpaceBelow || spaceBelow > spaceAbove || this.openDirection === 'below' || this.openDirection === 'bottom') {
         this.preferredOpenDirection = 'below'
-        this.optimizedHeight = Math.min(spaceBelow - 40, this.maxHeight)
+        this.optimizedHeight = Math.min(spaceBelow - 40, filteredOptionsHeight)
       } else {
         this.preferredOpenDirection = 'above'
-        this.optimizedHeight = Math.min(spaceAbove - 40, this.maxHeight)
+        this.optimizedHeight = Math.min(spaceAbove - 40, filteredOptionsHeight)
       }
     }
   }
