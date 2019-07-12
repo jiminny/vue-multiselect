@@ -7,7 +7,11 @@
   "repository": "https://github.com/jiminny/vue-multiselect-jiminny",
   "main": "dist/vue-multiselect.min.js",
   "scripts": {
-    "bundle:dist": "rm -rf dist && webpack --config build/webpack.bundle.conf.js"
+    "bundle": "node build/bundle.js"
+  },
+  "engines": {
+    "node": ">= 4.0.0",
+    "npm": ">= 3.0.0"
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "^3.0.4",
