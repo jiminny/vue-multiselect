@@ -1,21 +1,10 @@
 {
-  "name": "vue-multiselect",
+  "name": "vue-multiselect-jiminny",
   "version": "2.1.6",
   "description": "Multiselect component for vue.js",
   "author": "Damian Dulisz <damian.dulisz@gmail.com>",
   "license": "MIT",
-  "repository": "https://github.com/jiminny/vue-multiselect",
-  "main": "dist/vue-multiselect.min.js",
-  "scripts": {
-    "test": "vue-cli-service test:unit",
-    "lint": "eslint --ext .js,.vue src tests/unit/specs",
-    "dev": "node build/dev-server.js",
-    "bundle:dist": "rm -rf dist && webpack --config build/webpack.bundle.conf.js",
-    "bundle": "node build/bundle.js",
-    "docs": "rm -rf docs && mkdir docs && node build/build.js",
-    "unit": "vue-cli-service test:unit --watch",
-    "finish": "npm run lint && npm test && npm run bundle"
-  },
+  "repository": "https://github.com/jiminny/vue-multiselect-jiminny",
   "devDependencies": {
     "@vue/cli-plugin-babel": "^3.0.4",
     "@vue/cli-plugin-unit-jest": "^3.0.4",
